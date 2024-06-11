@@ -114,7 +114,7 @@ public class TournamentService {
      */
     public Tournament createNewTournament(String tournamentName) {
         // Set up new tournament times
-        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Istanbul"));
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
