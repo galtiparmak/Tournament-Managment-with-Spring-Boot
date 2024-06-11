@@ -1,0 +1,43 @@
+version: '3.9'
+
+services:
+  app:
+    image: backend-engineering-case-study:1.0
+    container_name: backend-engineering-case-study
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8080:8080'
+    networks:
+      - 'local-network'
+    depends_on:
+      - mysqldb
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/dreamgames
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: password
+
+  mysqldb:
+    image: mysql:8.0.28-oracle
+    container_name: case-mysqldb
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'dreamgames'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    networks:
+      - 'local-network'
+    ports:
+      - '3306:3306'
+    volumes:
+      - case-mysql-data:/var/lib/mysql
+      - ./mysql-db-dump.sql:/docker-entrypoint-initdb.d/mysql-db-dump.sql:ro
+
+volumes:
+  case-mysql-data:
+
+networks:
+  local-network:
+    driver: bridge
