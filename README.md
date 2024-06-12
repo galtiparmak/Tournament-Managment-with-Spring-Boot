@@ -2,7 +2,7 @@
 
 Java Version: 17.0.10
 
-Important Note: Project works in local. Maven clear, install, test give no warning or error. However, I face some problems with building docker project. It must be about the Docker (maven functions working well).
+Important Note: Project works in local. Maven clear, install, test give no warning or error. Builds the project in docker but can not run tests. I am assuming the problem is about connecting to database because mysql-db-dump.sql file gives silly errors I could not resolve.
 
 Implementation Choices
 
